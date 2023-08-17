@@ -1,11 +1,16 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-import { useState, useEffect } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Sidebar from "@/components/sidebar";
 
 export const MobileSidebar = ({
+  apiLimitCount = 0,
+}: {
+  apiLimitCount: number;
 }) => {
 
   // fix for the hydration error
@@ -18,7 +23,7 @@ export const MobileSidebar = ({
   if (!isMounted) {
     return null;
   }
-  
+
   return (
     <Sheet>
       <SheetTrigger>
@@ -27,7 +32,7 @@ export const MobileSidebar = ({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
-        <Sidebar />
+        <Sidebar apiLimitCount={apiLimitCount} />
       </SheetContent>
     </Sheet>
   );

@@ -6,52 +6,59 @@ import { Code, ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, Video
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from "next/navigation";
+import { FreeCounter } from "@/components/free-counter";
+
+interface SidebarProps {
+    apiLimitCount: number
+}
 
 const routes = [
     {
-        label: 'Dashboard',
-        icon: LayoutDashboard,
-        href: '/dashboard',
+      label: 'Dashboard',
+      icon: LayoutDashboard,
+      href: '/dashboard',
         color: 'text-sky-500'
     },
     {
-        label: 'Conversation',
-        icon: MessageSquare,
-        href: '/conversation',
-        color: "text-violet-600",
+      label: 'Conversation',
+      icon: MessageSquare,
+      href: '/conversation',
+      color: "text-violet-600",
     },
     {
-        label: 'Image Generation',
-        icon: ImageIcon,
-        color: "text-pink-700",
-        href: '/image',
+      label: 'Image Generation',
+      icon: ImageIcon,
+      color: "text-pink-700",
+      href: '/image',
     },
     {
-        label: 'Video Generation',
-        icon: VideoIcon,
-        color: "text-orange-700",
-        href: '/video',
+      label: 'Video Generation',
+      icon: VideoIcon,
+      color: "text-orange-700",
+      href: '/video',
     },
     {
-        label: 'Music Generation',
-        icon: Music,
-        color: "text-emerald-500",
-        href: '/music',
+      label: 'Music Generation',
+      icon: Music,
+      color: "text-emerald-500",
+      href: '/music',
     },
     {
-        label: 'Code Generation',
-        icon: Code,
-        color: "text-green-700",
-        href: '/code',
+      label: 'Code Generation',
+      icon: Code,
+      color: "text-green-700",
+      href: '/code',
     },
     {
-        label: 'Settings',
-        icon: Settings,
-        href: '/settings',
+      label: 'Settings',
+      icon: Settings,
+      href: '/settings',
     },
-]
+  ];
 
-const Sidebar = () => {
+const Sidebar = ({
+    apiLimitCount = 0
+}: SidebarProps) => {
     const pathname = usePathname();
     return (
         <div className='space-y-4 py-4 flex flex-col h-full bg-[#040548] text-white'>
@@ -87,8 +94,12 @@ const Sidebar = () => {
                     }
                 </div>
             </div>
+            <FreeCounter
+                apiLimitCount={apiLimitCount}
+                isPro={false}
+            />
         </div>
     )
 }
 
-export default Sidebar
+export default Sidebar;
