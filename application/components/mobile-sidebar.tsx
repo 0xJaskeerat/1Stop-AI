@@ -9,8 +9,10 @@ import Sidebar from "@/components/sidebar";
 
 export const MobileSidebar = ({
   apiLimitCount = 0,
+  isPro = false
 }: {
   apiLimitCount: number;
+  isPro: boolean;
 }) => {
 
   // fix for the hydration error
@@ -32,7 +34,7 @@ export const MobileSidebar = ({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
-        <Sidebar apiLimitCount={apiLimitCount} />
+        <Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
       </SheetContent>
     </Sheet>
   );

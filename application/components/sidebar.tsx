@@ -9,7 +9,8 @@ import { usePathname } from "next/navigation";
 import { FreeCounter } from "@/components/free-counter";
 
 interface SidebarProps {
-    apiLimitCount: number
+    apiLimitCount: number;
+    isPro: boolean;
 }
 
 const routes = [
@@ -57,7 +58,8 @@ const routes = [
   ];
 
 const Sidebar = ({
-    apiLimitCount = 0
+    apiLimitCount = 0,
+    isPro = false
 }: SidebarProps) => {
     const pathname = usePathname();
     return (
@@ -96,7 +98,7 @@ const Sidebar = ({
             </div>
             <FreeCounter
                 apiLimitCount={apiLimitCount}
-                isPro={false}
+                isPro={isPro}
             />
         </div>
     )
