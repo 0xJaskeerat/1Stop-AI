@@ -7,20 +7,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FileAudio } from "lucide-react";
 import { useRouter } from "next/navigation";
-
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
-
+import { useProModal } from "@/hooks/use-pro-modal";
 import { formSchema } from "./constants";
 
 const VideoPage = () => {
   const router = useRouter();
   const [video, setVideo] = useState<string>();
-
+  const proModal = useProModal();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,7 +39,7 @@ const VideoPage = () => {
       form.reset();
     } catch (error: any) {
       if (error?.response?.status === 403) {
-        console.log("403")
+        proModal.onOpen();
       } else {
         console.log("Something wrong")
       }

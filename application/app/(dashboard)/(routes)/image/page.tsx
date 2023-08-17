@@ -17,11 +17,12 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Loader } from "@/components/loader";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const PhotoPage = () => {
     const router = useRouter();
     const [photos, setPhotos] = useState<string[]>([]);
-
+    const proModal = useProModal();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -44,7 +45,7 @@ const PhotoPage = () => {
             setPhotos(urls);
         } catch (error: any) {
             if (error?.response?.status === 403) {
-                console.log("403");
+                proModal.onOpen();
             } else {
                 console.log("something wrong");
             }

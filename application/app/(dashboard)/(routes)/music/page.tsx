@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Music, Send } from "lucide-react";
-
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +20,7 @@ import { formSchema } from './constants'
 const MusicPage = () => {
   const router = useRouter();
   const [music, setMusic] = useState<string>();
-
+  const proModal = useProModal();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +41,7 @@ const MusicPage = () => {
       form.reset();
     } catch (error: any) {
       if (error?.response?.status === 403) {
-        console.log("403");
+        proModal.onOpen();
       } else {
         console.log("Something wrong")
       }
