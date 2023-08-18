@@ -70,7 +70,8 @@ const Sidebar = ({
                         <Image
                             alt='Logo'
                             src='/logo.png'
-                            fill
+                            width={300}
+                            height={300}
                         />
                     </div>
                     <h1 className='text-xl font-semibold'><span className='text-[#FDB128]'>1</span>Stop <span className='text-[#EB1260]'>AI</span></h1>
