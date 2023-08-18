@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, ImageIcon } from "lucide-react";
+import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Heading } from "@/components/heading";
@@ -47,7 +48,7 @@ const PhotoPage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("something wrong");
+                toast.error("Something went wrong.");
             }
         } finally {
             router.refresh();

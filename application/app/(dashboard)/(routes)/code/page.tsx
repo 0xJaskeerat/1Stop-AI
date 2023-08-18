@@ -8,7 +8,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
-
+import { toast } from "react-hot-toast";
 import { BotAvatar } from "@/components/bot-avatar";
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
@@ -48,7 +48,7 @@ const CodePage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen();
       } else {
-        console.log("something wrong");
+        toast.error("Something went wrong.");
       }
     } finally {
       router.refresh();

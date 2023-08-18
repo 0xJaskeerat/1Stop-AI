@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { FileAudio } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Heading } from "@/components/heading";
@@ -41,7 +42,7 @@ const VideoPage = () => {
       if (error?.response?.status === 403) {
         proModal.onOpen();
       } else {
-        console.log("Something wrong")
+        toast.error("Something went wrong.");
       }
     } finally {
       router.refresh();
